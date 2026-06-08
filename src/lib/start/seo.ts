@@ -1,20 +1,31 @@
 import type { Metadata } from "next";
 import { FAQ_ITEMS } from "./config";
+import { LANDING_IMAGES } from "./images";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lidgen.ru";
+const OG_IMAGE = `${SITE_URL}${LANDING_IMAGES.mainHero.src}`;
+
+const START_TITLE =
+  "LidGen — клиенты через рекомендации реальных людей | без ботов";
+const START_DESCRIPTION =
+  "Платформа пользовательских рекомендаций для бизнеса и исполнителей. Живые люди размещают рекомендации в WhatsApp и соцсетях. Антифрод, QR-код, оплата от 250 ₽ за размещение. Регистрация бесплатна.";
 
 export const startMetadata: Metadata = {
-  title: "LidGen — клиенты через рекомендации реальных людей",
-  description:
-    "Платформа пользовательских рекомендаций. Компании создают задания, люди размещают рекомендации в соцсетях. Оплата только за результат. Регистрация бесплатна.",
+  title: START_TITLE,
+  description: START_DESCRIPTION,
   keywords: [
-    "рекомендации",
-    "привлечение клиентов",
-    "реклама",
-    "соцсети",
     "LidGen",
+    "лидген",
+    "привлечение клиентов",
+    "рекомендации в соцсетях",
+    "реклама в WhatsApp",
+    "пользовательские рекомендации",
+    "заработок на статусах",
+    "антифрод реклама",
+    "маркетинг для малого бизнеса",
+    "лиды без ботов",
     "платформа заданий",
-    "маркетинг",
+    "UGC маркетинг",
   ],
   alternates: {
     canonical: "/start",
@@ -24,73 +35,146 @@ export const startMetadata: Metadata = {
     locale: "ru_RU",
     url: `${SITE_URL}/start`,
     siteName: "LidGen",
-    title: "LidGen — клиенты через рекомендации реальных людей",
-    description:
-      "Люди доверяют людям, не рекламе. Получайте рекомендации от обычных пользователей и платите только за выполненные размещения.",
+    title: START_TITLE,
+    description: START_DESCRIPTION,
+    images: [
+      {
+        url: OG_IMAGE,
+        width: LANDING_IMAGES.mainHero.width,
+        height: LANDING_IMAGES.mainHero.height,
+        alt: LANDING_IMAGES.mainHero.alt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LidGen — клиенты через рекомендации",
-    description:
-      "Платформа пользовательских рекомендаций. Регистрация бесплатна, первое задание от 2500 ₽.",
+    title: START_TITLE,
+    description: START_DESCRIPTION,
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  category: "business",
+  other: {
+    "yandex-revisit-after": "3 days",
   },
 };
 
 export function getStartJsonLd() {
   const siteUrl = SITE_URL;
+  const startUrl = `${siteUrl}/start`;
 
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "LidGen",
-      url: siteUrl,
-      description:
-        "Платформа пользовательских рекомендаций для бизнеса и исполнителей",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      name: "LidGen",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "RUB",
-        description: "Бесплатная регистрация, оплата от 250 ₽ за размещение",
-      },
-      description:
-        "Компании создают задания. Пользователи размещают рекомендации в соцсетях. Оплата только за результат.",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: "LidGen — клиенты через рекомендации",
-      url: `${siteUrl}/start`,
-      description:
-        "Получайте клиентов через рекомендации реальных людей вместо дорогой рекламы",
-      isPartOf: {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
         "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "LidGen",
+        description: START_DESCRIPTION,
+        inLanguage: "ru-RU",
+        publisher: { "@id": `${siteUrl}/#organization` },
+      },
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
         name: "LidGen",
         url: siteUrl,
+        logo: `${siteUrl}/favicon.ico`,
+        sameAs: ["https://lid-gen.pro"],
+        description:
+          "Платформа пользовательских рекомендаций для бизнеса и исполнителей",
       },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: FAQ_ITEMS.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer,
+      {
+        "@type": "WebPage",
+        "@id": `${startUrl}/#webpage`,
+        url: startUrl,
+        name: START_TITLE,
+        description: START_DESCRIPTION,
+        isPartOf: { "@id": `${siteUrl}/#website` },
+        about: { "@id": `${siteUrl}/#organization` },
+        inLanguage: "ru-RU",
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: OG_IMAGE,
         },
-      })),
-    },
-  ];
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${startUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Главная",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "LidGen — старт",
+            item: startUrl,
+          },
+        ],
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${siteUrl}/#application`,
+        name: "LidGen",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "RUB",
+          description: "Бесплатная регистрация, оплата от 250 ₽ за размещение",
+          url: "/register/business",
+        },
+        description: START_DESCRIPTION,
+        featureList: [
+          "Рекомендации в WhatsApp и соцсетях",
+          "Антифрод и уникальный QR-код",
+          "Оплата только за размещения",
+          "Заработок для исполнителей",
+        ],
+      },
+      {
+        "@type": "Service",
+        "@id": `${startUrl}/#service`,
+        name: "Привлечение клиентов через рекомендации LidGen",
+        provider: { "@id": `${siteUrl}/#organization` },
+        areaServed: "RU",
+        serviceType: "Маркетинг и привлечение клиентов",
+        description:
+          "Компании создают задания, исполнители размещают рекомендации в мессенджерах. Без ботов, с антифрод-проверкой.",
+        offers: {
+          "@type": "Offer",
+          price: "2500",
+          priceCurrency: "RUB",
+          description: "Пакет из 10 размещений, до 250 ₽ за размещение",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${startUrl}/#faq`,
+        mainEntity: FAQ_ITEMS.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
+    ],
+  };
 }

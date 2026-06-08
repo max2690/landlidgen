@@ -9,7 +9,7 @@ type ImageSlotProps = {
 };
 
 const aspectClasses = {
-  phone: "aspect-[9/19] max-w-[280px] mx-auto sm:max-w-[320px]",
+  phone: "aspect-[9/19] w-full max-w-[240px] mx-auto sm:max-w-[320px]",
   wide: "aspect-video w-full",
   square: "aspect-square w-full",
 } as const;

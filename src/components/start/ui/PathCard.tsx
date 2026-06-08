@@ -1,7 +1,15 @@
 import Link from "next/link";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import { REGISTER_URLS } from "@/lib/start/config";
 
-type PathCardProps = {
+type PathCardProps = HTMLAttributes<HTMLDivElement> & {
   variant: "business" | "executor";
   badge: string;
   title: string;
@@ -10,6 +18,7 @@ type PathCardProps = {
   cta: string;
   id?: string;
   highlighted?: boolean;
+  footerNote?: string;
 };
 
 export function PathCard({
@@ -21,6 +30,9 @@ export function PathCard({
   cta,
   id,
   highlighted = false,
+  footerNote,
+  className = "",
+  ...props
 }: PathCardProps) {
   const href =
     variant === "business" ? REGISTER_URLS.business : REGISTER_URLS.executor;
@@ -29,11 +41,12 @@ export function PathCard({
   return (
     <div
       id={id}
-      className={`card-hover flex h-full flex-col rounded-2xl border bg-[var(--bg-card)] p-6 sm:p-8 ${
+      {...props}
+      className={`card-hover flex h-full flex-col rounded-2xl border bg-[var(--bg-card)] p-5 sm:p-8 ${
         isBusiness || highlighted
           ? "border-[var(--acid)]/40 shadow-[0_0_32px_rgba(191,255,0,0.06)] hover:border-[var(--acid)]/60 hover:shadow-[0_0_48px_rgba(191,255,0,0.12)]"
           : "border-[var(--border)] hover:border-[var(--acid-muted)]"
-      }`}
+      } ${className}`}
     >
       <span
         className={`mb-4 inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider ${
@@ -45,7 +58,7 @@ export function PathCard({
         {badge}
       </span>
 
-      <h3 className="text-2xl font-bold text-white sm:text-3xl">{title}</h3>
+      <h3 className="text-xl font-bold text-white sm:text-3xl">{title}</h3>
       <p className="mt-2 text-base text-[var(--text-muted)] sm:text-lg">
         {subtitle}
       </p>
@@ -53,7 +66,9 @@ export function PathCard({
       <ul className="mt-6 flex flex-1 flex-col gap-3">
         {bullets.map((bullet) => (
           <li key={bullet} className="flex items-start gap-2 text-white">
-            <span className={`mt-0.5 shrink-0 ${isBusiness ? "text-[var(--acid)]" : "text-white/60"}`}>
+            <span
+              className={`mt-0.5 shrink-0 ${isBusiness ? "text-[var(--acid)]" : "text-white/60"}`}
+            >
               ✔
             </span>
             <span className="text-sm sm:text-base">{bullet}</span>
@@ -61,9 +76,13 @@ export function PathCard({
         ))}
       </ul>
 
+      {footerNote ? (
+        <p className="mt-6 text-sm text-[var(--text-muted)]">{footerNote}</p>
+      ) : null}
+
       <Link
         href={href}
-        className={`mt-8 inline-flex w-full items-center justify-center rounded-xl py-4 text-base font-semibold transition-all duration-200 active:scale-[0.98] sm:text-lg ${
+        className={`${footerNote ? "mt-4" : "mt-6"} inline-flex min-h-[48px] w-full items-center justify-center rounded-xl py-3.5 text-base font-semibold transition-all duration-200 active:scale-[0.98] sm:mt-8 sm:py-4 sm:text-lg ${
           isBusiness || highlighted
             ? "bg-[var(--acid)] text-black hover:bg-[var(--acid-hover)] hover:shadow-[0_0_32px_rgba(191,255,0,0.35)]"
             : "border border-[var(--border-strong)] bg-[var(--bg-elevated)] text-white hover:border-[var(--acid-muted)] hover:bg-black"
@@ -81,14 +100,27 @@ export function DualPathGrid({
   children,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (
     <div
       className={`grid gap-4 lg:grid-cols-2 lg:gap-6 ${className}`}
+      data-stagger={180}
     >
-      {children}
+      {Children.map(children, (child, index) => {
+        if (!isValidElement(child)) return child;
+
+        const element = child as ReactElement<{
+          "data-reveal"?: string;
+          "data-reveal-index"?: number;
+        }>;
+
+        return cloneElement(element, {
+          "data-reveal": "fade-up",
+          "data-reveal-index": index,
+        });
+      })}
     </div>
   );
 }

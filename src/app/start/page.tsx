@@ -3,22 +3,20 @@ import { LogoHeader } from "@/components/start/LogoHeader";
 import { Hero } from "@/components/start/Hero";
 import { StatsBar } from "@/components/start/StatsBar";
 import { PainBlock } from "@/components/start/PainBlock";
-import { ProblemBlock } from "@/components/start/ProblemBlock";
 import { SolutionBlock } from "@/components/start/SolutionBlock";
-import { VisualProofBlock } from "@/components/start/VisualProofBlock";
 import { AntifraudBlock } from "@/components/start/AntifraudBlock";
-import { MetricsBlock } from "@/components/start/MetricsBlock";
+import { VisualProofBlock } from "@/components/start/VisualProofBlock";
 import { ComparisonBlock } from "@/components/start/ComparisonBlock";
 import { PricingCtaBlock } from "@/components/start/PricingCtaBlock";
-import { BenefitsBlock } from "@/components/start/BenefitsBlock";
 import { ExecutorEarningsBlock } from "@/components/start/ExecutorEarningsBlock";
-import { TestimonialsBlock } from "@/components/start/TestimonialsBlock";
 import { AudienceBlock } from "@/components/start/AudienceBlock";
-import { MidCtaBand } from "@/components/start/MidCtaBand";
+import { TestimonialsBlock } from "@/components/start/TestimonialsBlock";
 import { FaqBlock } from "@/components/start/FaqBlock";
 import { FinalCta } from "@/components/start/FinalCta";
 import { SiteFooter } from "@/components/start/SiteFooter";
 import { StickyMobileCta } from "@/components/start/StickyMobileCta";
+import { ScrollProgress } from "@/components/start/ui/ScrollProgress";
+import { ScrollReveal } from "@/components/start/ui/ScrollReveal";
 import {
   resolveHeadlineVariant,
   resolveStickyVariant,
@@ -56,25 +54,24 @@ export default async function StartPage({ searchParams }: StartPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="min-h-screen bg-black pb-20 text-white md:pb-0">
+      <ScrollProgress />
+      <ScrollReveal />
+
+      <div className="min-h-screen bg-black pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] text-white md:pb-0">
         <StickyBanner variant={stickyVariant} />
         <LogoHeader />
         <main>
           <Hero headlineVariant={headlineVariant} />
           <StatsBar />
           <PainBlock />
-          <ProblemBlock />
           <SolutionBlock />
-          <VisualProofBlock />
           <AntifraudBlock />
-          <MetricsBlock />
+          <VisualProofBlock />
           <ComparisonBlock />
           <PricingCtaBlock />
-          <BenefitsBlock />
           <ExecutorEarningsBlock />
-          <TestimonialsBlock />
           <AudienceBlock />
-          <MidCtaBand />
+          <TestimonialsBlock />
           <FaqBlock />
           <FinalCta />
         </main>

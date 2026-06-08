@@ -1,97 +1,84 @@
 import Image from "next/image";
-import { Section } from "./ui/Section";
 import { PathCard, DualPathGrid } from "./ui/PathCard";
 import { LANDING_IMAGES } from "@/lib/start/images";
 import {
   BUSINESS_PATH,
   EXECUTOR_PATH,
+  HERO_DESCRIPTION,
   HERO_HEADLINES,
+  HERO_HOOK,
   type HeadlineVariant,
 } from "@/lib/start/config";
-
-const TRUST_POINTS = [
-  "Антифрод и QR-код — без ботов",
-  "100–200 просмотров статуса в WhatsApp",
-  "Регистрация занимает меньше минуты",
-] as const;
 
 type HeroProps = {
   headlineVariant: HeadlineVariant;
 };
 
 export function Hero({ headlineVariant }: HeroProps) {
-  const visual = LANDING_IMAGES.mainHero;
+  const visual = LANDING_IMAGES.livePeopleHero;
 
   return (
-    <Section className="pb-12 pt-8 sm:pb-16 sm:pt-12">
-      <div className="mx-auto max-w-6xl">
-        <div className="text-center">
-          <h1 className="animate-fade-up text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+    <section className="relative isolate overflow-hidden">
+      <div
+        data-parallax="0.35"
+        className="absolute inset-x-0 top-0 h-[420px] sm:h-[min(52vh,560px)]"
+      >
+        <Image
+          src={visual.src!}
+          alt={visual.alt}
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/75" aria-hidden />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"
+          aria-hidden
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex min-h-0 flex-col items-center justify-center py-10 text-center sm:min-h-[min(52vh,560px)] sm:py-14">
+          <h1 className="animate-fade-up max-w-4xl text-[1.65rem] font-bold leading-[1.12] tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-[3.25rem]">
             {HERO_HEADLINES[headlineVariant]}
           </h1>
 
-          <p className="animate-fade-up animation-delay-100 mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[var(--text-muted)] sm:text-xl">
-            LidGen — платформа, где{" "}
-            <span className="text-white">компании получают клиентов</span> через
-            рекомендации реальных людей, а{" "}
-            <span className="text-white">исполнители зарабатывают</span> на
-            размещениях в соцсетях.
+          <p className="animate-fade-up animation-delay-100 mt-4 text-base font-semibold text-[var(--acid)] sm:mt-5 sm:text-2xl">
+            {HERO_HOOK}
+          </p>
+
+          <p className="animate-fade-up animation-delay-200 mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/85 sm:mt-4 sm:text-lg">
+            {HERO_DESCRIPTION}
           </p>
         </div>
 
-        <div className="animate-fade-up animation-delay-200 card-hover group relative mx-auto mt-10 max-w-5xl overflow-hidden rounded-2xl border border-[var(--border)]">
-          <div className="relative aspect-[21/9] w-full sm:aspect-[2.4/1]">
-            <Image
-              src={visual.src!}
-              alt={visual.alt}
-              fill
-              priority
-              className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-              sizes="(max-width: 768px) 100vw, 1024px"
+        <div className="relative pb-8 sm:pb-14">
+          <DualPathGrid className="mt-2">
+            <PathCard
+              variant="business"
+              id={BUSINESS_PATH.id}
+              badge={BUSINESS_PATH.badge}
+              title={BUSINESS_PATH.title}
+              subtitle={BUSINESS_PATH.subtitle}
+              bullets={BUSINESS_PATH.bullets}
+              cta={BUSINESS_PATH.cta}
+              highlighted
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          </div>
+            <PathCard
+              variant="executor"
+              id={EXECUTOR_PATH.id}
+              badge={EXECUTOR_PATH.badge}
+              title={EXECUTOR_PATH.title}
+              subtitle={EXECUTOR_PATH.subtitle}
+              bullets={EXECUTOR_PATH.bullets}
+              cta={EXECUTOR_PATH.cta}
+              footerNote={EXECUTOR_PATH.incomeNote}
+              highlighted
+            />
+          </DualPathGrid>
         </div>
-
-        <p className="animate-fade-up animation-delay-300 mt-10 text-center text-sm font-medium uppercase tracking-widest text-[var(--text-muted)]">
-          Выберите свой путь
-        </p>
-
-        <DualPathGrid className="animate-fade-up animation-delay-300 mt-4">
-          <PathCard
-            variant="business"
-            id={BUSINESS_PATH.id}
-            badge={BUSINESS_PATH.badge}
-            title={BUSINESS_PATH.title}
-            subtitle={BUSINESS_PATH.subtitle}
-            bullets={BUSINESS_PATH.bullets}
-            cta={BUSINESS_PATH.cta}
-            highlighted
-          />
-          <PathCard
-            variant="executor"
-            id={EXECUTOR_PATH.id}
-            badge={EXECUTOR_PATH.badge}
-            title={EXECUTOR_PATH.title}
-            subtitle={EXECUTOR_PATH.subtitle}
-            bullets={EXECUTOR_PATH.bullets}
-            cta={EXECUTOR_PATH.cta}
-            highlighted
-          />
-        </DualPathGrid>
-
-        <ul className="mt-8 flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-6">
-          {TRUST_POINTS.map((point) => (
-            <li
-              key={point}
-              className="flex items-center gap-2 text-sm text-[var(--text-muted)] sm:text-base"
-            >
-              <span className="text-[var(--acid)]">✔</span>
-              {point}
-            </li>
-          ))}
-        </ul>
       </div>
-    </Section>
+    </section>
   );
 }

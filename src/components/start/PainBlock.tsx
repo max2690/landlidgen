@@ -1,31 +1,34 @@
-import { PAIN_CARDS } from "@/lib/start/config";
+import { PAIN_CARDS, PAIN_CLOSER } from "@/lib/start/config";
+import { BlockCta } from "./ui/BlockCta";
 import { HoverCard } from "./ui/HoverCard";
-import { HighlightStatement, Section, SectionTitle } from "./ui/Section";
+import { RevealGrid } from "./ui/RevealGrid";
+import {
+  HighlightStatement,
+  Section,
+  SectionTitle,
+} from "./ui/Section";
 
 export function PainBlock() {
   return (
     <Section className="border-t border-[var(--border)] bg-[var(--bg-elevated)]">
       <SectionTitle>Знакомо?</SectionTitle>
-      <p className="-mt-6 mb-10 text-center text-[var(--text-muted)]">
-        Для владельцев бизнеса, которые устали от рекламы.{" "}
-        <a href="#executor" className="text-[var(--acid)] underline-offset-2 hover:underline">
-          Ищете заработок? →
-        </a>
-      </p>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <RevealGrid
+        className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+        stagger={80}
+        variant="flip-up"
+      >
         {PAIN_CARDS.map((card) => (
-          <HoverCard
-            key={card}
-            className="p-6 text-center hover:border-red-500/40"
-          >
-            <span className="mb-3 block text-2xl">❌</span>
-            <p className="text-lg font-medium text-white">{card}</p>
+          <HoverCard key={card} className="p-5 text-center">
+            <span className="mb-2 block text-xl">❌</span>
+            <p className="font-medium text-white">{card}</p>
           </HoverCard>
         ))}
-      </div>
+      </RevealGrid>
 
-      <HighlightStatement>LidGen работает иначе.</HighlightStatement>
+      <HighlightStatement>{PAIN_CLOSER}</HighlightStatement>
+
+      <BlockCta variant="how-it-works" className="mt-8" />
     </Section>
   );
 }

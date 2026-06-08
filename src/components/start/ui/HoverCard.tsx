@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-type HoverCardProps = {
+type HoverCardProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
   className?: string;
   accent?: boolean;
@@ -12,9 +12,11 @@ export function HoverCard({
   className = "",
   accent = false,
   as: Tag = "div",
+  ...props
 }: HoverCardProps) {
   return (
     <Tag
+      {...props}
       className={`card-hover rounded-2xl border bg-[var(--bg-card)] ${
         accent
           ? "border-[var(--acid)]/30 hover:border-[var(--acid)]/50 hover:shadow-[0_0_40px_rgba(191,255,0,0.1)]"

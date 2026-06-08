@@ -1,60 +1,41 @@
 import { LANDING_IMAGES } from "@/lib/start/images";
-import { DualPathGrid } from "./ui/PathCard";
 import { ImageSlot } from "./ui/ImageSlot";
-import { Section, SectionTitle } from "./ui/Section";
+import { RevealGrid } from "./ui/RevealGrid";
+import { RevealLead, Section, SectionTitle } from "./ui/Section";
 
 export function VisualProofBlock() {
   return (
-    <Section className="border-t border-[var(--border)] bg-[var(--bg-elevated)]">
-      <SectionTitle>Как это выглядит</SectionTitle>
-      <p className="-mt-6 mb-10 text-center text-lg text-[var(--text-muted)]">
-        Не абстракция — реальный кабинет и реальные статусы в соцсетях
-      </p>
+    <Section className="border-t border-[var(--border)]">
+      <SectionTitle>Как это выглядит внутри</SectionTitle>
+      <RevealLead className="-mt-4 mb-6 text-center text-[var(--text-muted)] sm:-mt-6 sm:mb-8">
+        Не теория — личный кабинет, задания, статистика и уровни.
+      </RevealLead>
 
-      <DualPathGrid className="mb-8">
-        <div>
-          <p className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-[var(--acid)]">
+      <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <div data-reveal="fade-up">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--acid)] sm:mb-4 sm:text-sm">
             Для бизнеса
           </p>
-          <ImageSlot
-            slot={LANDING_IMAGES.cabinetTask}
-            aspect="phone"
-            priority
-          />
-          <p className="mt-4 text-center text-sm text-[var(--text-muted)]">
-            Создаёте задание → видите каждое размещение и статистику
+          <RevealGrid className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4" stagger={100}>
+            <ImageSlot slot={LANDING_IMAGES.cabinetTask} aspect="phone" priority />
+            <ImageSlot slot={LANDING_IMAGES.cabinetStats} aspect="wide" />
+          </RevealGrid>
+          <p className="mt-2 text-center text-xs text-[var(--text-muted)] sm:mt-3 sm:text-sm">
+            Карточка задания и статистика размещений
           </p>
         </div>
 
-        <div>
-          <p className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-white/70">
+        <div data-reveal="fade-up" data-reveal-delay={120}>
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-white/80 sm:mb-4 sm:text-sm">
             Для исполнителей
           </p>
-          <ImageSlot slot={LANDING_IMAGES.socialStatus} aspect="phone" />
-          <p className="mt-4 text-center text-sm text-[var(--text-muted)]">
-            Выкладываете статус у себя — получаете оплату
+          <RevealGrid className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4" stagger={100}>
+            <ImageSlot slot={LANDING_IMAGES.taskFeed} aspect="wide" />
+            <ImageSlot slot={LANDING_IMAGES.levelCards} aspect="wide" />
+          </RevealGrid>
+          <p className="mt-2 text-center text-xs text-[var(--text-muted)] sm:mt-3 sm:text-sm">
+            Лента заданий и уровни аккаунта
           </p>
-        </div>
-      </DualPathGrid>
-
-      <div className="grid gap-6 sm:grid-cols-3">
-        <div>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            Статистика
-          </p>
-          <ImageSlot slot={LANDING_IMAGES.cabinetStats} aspect="wide" />
-        </div>
-        <div>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            Задания
-          </p>
-          <ImageSlot slot={LANDING_IMAGES.taskFeed} aspect="wide" />
-        </div>
-        <div>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            Уровни
-          </p>
-          <ImageSlot slot={LANDING_IMAGES.levelCards} aspect="wide" />
         </div>
       </div>
     </Section>
