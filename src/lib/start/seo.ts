@@ -6,9 +6,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lidgen.ru";
 const OG_IMAGE = `${SITE_URL}${LANDING_IMAGES.mainHero.src}`;
 
 const START_TITLE =
-  "LidGen — клиенты через рекомендации реальных людей | без ботов";
+  "LidGen — рекомендации в Stories и соцсетях для бизнеса | доверительный трафик";
 const START_DESCRIPTION =
-  "Платформа пользовательских рекомендаций для бизнеса и исполнителей. Живые люди размещают рекомендации в WhatsApp и соцсетях. Антифрод, QR-код, оплата от 250 ₽ за размещение. Регистрация бесплатна.";
+  "Бизнес запускает задания — исполнители рекомендуют в Stories и ленте. Публикацию видят знакомые автора, не холодный таргет. Проверка размещений, QR, антифрод. Регистрация бесплатна.";
 
 export const startMetadata: Metadata = {
   title: START_TITLE,
@@ -136,7 +136,7 @@ export function getStartJsonLd() {
           "@type": "Offer",
           price: "0",
           priceCurrency: "RUB",
-          description: "Бесплатная регистрация, оплата от 250 ₽ за размещение",
+          description: "Бесплатная регистрация, оплата за проверенные размещения",
           url: "/register/business",
         },
         description: START_DESCRIPTION,
@@ -155,7 +155,7 @@ export function getStartJsonLd() {
         areaServed: "RU",
         serviceType: "Маркетинг и привлечение клиентов",
         description:
-          "Компании создают задания, исполнители размещают рекомендации в мессенджерах. Без ботов, с антифрод-проверкой.",
+          "Рекомендации в Stories и соцсетях в круге знакомых исполнителей. Проверка каждого размещения, антифрод, QR.",
         offers: {
           "@type": "Offer",
           price: "2500",

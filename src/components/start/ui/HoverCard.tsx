@@ -19,7 +19,7 @@ export function HoverCard({
       {...props}
       className={`card-hover rounded-2xl border bg-[var(--bg-card)] ${
         accent
-          ? "border-[var(--acid)]/30 hover:border-[var(--acid)]/50 hover:shadow-[0_0_40px_rgba(191,255,0,0.1)]"
+          ? "border-[var(--acid)]/30 hover:border-[var(--acid)]/50 hover:shadow-[0_0_40px_var(--glow)]"
           : "border-[var(--border)] hover:border-[var(--acid-muted)]"
       } ${className}`}
     >

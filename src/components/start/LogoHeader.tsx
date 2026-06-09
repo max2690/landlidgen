@@ -3,7 +3,7 @@ import { MAIN_SITE_URL, REGISTER_URLS } from "@/lib/start/config";
 
 export function LogoHeader() {
   return (
-    <header className="border-b border-[var(--border)] bg-black/80 backdrop-blur-md">
+    <header className="border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6 sm:py-4">
         <Link
           href={MAIN_SITE_URL}
@@ -22,7 +22,7 @@ export function LogoHeader() {
           </Link>
           <Link
             href={REGISTER_URLS.executor}
-            className="rounded-lg bg-[var(--acid)] px-2.5 py-2 text-xs font-semibold text-black transition-colors hover:bg-[var(--acid-hover)] sm:px-3 sm:text-sm"
+            className="cta-shine rounded-lg bg-[var(--acid)] px-2.5 py-2 text-xs font-semibold text-black transition-colors hover:bg-[var(--acid-hover)] sm:px-3 sm:text-sm"
           >
             Заработать
           </Link>

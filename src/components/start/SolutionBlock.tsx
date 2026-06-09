@@ -4,7 +4,7 @@ import { Section, SectionTitle } from "./ui/Section";
 export function SolutionBlock() {
   return (
     <Section id="how-it-works">
-      <SectionTitle>Как работает LidGen</SectionTitle>
+      <SectionTitle>Как рекомендация попадает в Stories</SectionTitle>
 
       <div className="relative">
         {/* Desktop: центральная линия */}
@@ -34,7 +34,7 @@ export function SolutionBlock() {
                   className={`pl-10 lg:pl-0 ${isEven ? "lg:pr-12 lg:text-right" : "lg:col-start-2 lg:pl-12"}`}
                 >
                   <span
-                    className="absolute left-2.5 top-5 z-10 h-3 w-3 rounded-full bg-[var(--acid)] shadow-[0_0_10px_rgba(191,255,0,0.45)] lg:hidden"
+                    className="absolute left-2.5 top-5 z-10 h-3 w-3 rounded-full bg-[var(--acid)] shadow-[0_0_10px_rgba(0,225,180,0.45)] lg:hidden"
                     aria-hidden
                   />
 
@@ -58,7 +58,7 @@ export function SolutionBlock() {
                 </div>
 
                 <span
-                  className="absolute left-1/2 top-5 hidden h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--acid)] shadow-[0_0_12px_rgba(191,255,0,0.5)] lg:block"
+                  className="absolute left-1/2 top-5 hidden h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--acid)] shadow-[0_0_12px_rgba(0,225,180,0.5)] lg:block"
                   aria-hidden
                 />
               </li>

@@ -11,7 +11,7 @@ import {
 export function PainBlock() {
   return (
     <Section className="border-t border-[var(--border)] bg-[var(--bg-elevated)]">
-      <SectionTitle>Знакомо?</SectionTitle>
+      <SectionTitle>Знакомая картина с рекламой?</SectionTitle>
 
       <RevealGrid
         className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"

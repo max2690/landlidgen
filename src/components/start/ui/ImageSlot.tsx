@@ -5,19 +5,24 @@ type ImageSlotProps = {
   slot: LandingImageSlot;
   priority?: boolean;
   className?: string;
-  aspect?: "phone" | "wide" | "square";
+  aspect?: "phone" | "wide" | "square" | "card" | "native";
+  fit?: "cover" | "contain";
 };
 
 const aspectClasses = {
   phone: "aspect-[9/19] w-full max-w-[240px] mx-auto sm:max-w-[320px]",
   wide: "aspect-video w-full",
   square: "aspect-square w-full",
+  card: "aspect-[3/4] w-full",
+  native: "w-full",
 } as const;
 
 const sizeHints = {
   phone: "(max-width: 640px) 280px, 320px",
-  wide: "(max-width: 768px) 100vw, 320px",
+  wide: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px",
   square: "(max-width: 768px) 100vw, 320px",
+  card: "(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 280px",
+  native: "(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 320px",
 } as const;
 
 export function ImageSlot({
@@ -25,17 +30,21 @@ export function ImageSlot({
   priority = false,
   className = "",
   aspect = "phone",
+  fit = "cover",
 }: ImageSlotProps) {
   const hasImage = Boolean(slot.src);
+  const nativeAspect =
+    aspect === "native" ? `${slot.width} / ${slot.height}` : undefined;
 
   return (
     <div className={`flex flex-col ${className}`}>
       <div
         className={`card-hover relative overflow-hidden rounded-2xl border ${
           hasImage
-            ? "border-[var(--border)] bg-black hover:border-[var(--acid-muted)]"
+            ? "border-[var(--border)] bg-[var(--bg-elevated)] hover:border-[var(--acid-muted)]"
             : "border-dashed border-[var(--acid)]/30 bg-[var(--bg-card)] hover:border-[var(--acid)]/50"
         } ${aspectClasses[aspect]}`}
+        style={nativeAspect ? { aspectRatio: nativeAspect } : undefined}
       >
         {hasImage ? (
           <Image
@@ -43,7 +52,12 @@ export function ImageSlot({
             alt={slot.alt}
             fill
             priority={priority}
-            className="object-cover object-center"
+            quality={90}
+            className={
+              fit === "contain"
+                ? "object-contain object-center"
+                : "object-cover object-center"
+            }
             sizes={sizeHints[aspect]}
           />
         ) : (

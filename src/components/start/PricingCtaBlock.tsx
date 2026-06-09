@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PRICING_POINTS, REGISTER_URLS } from "@/lib/start/config";
+import { CTA, PRICING_POINTS, REGISTER_URLS } from "@/lib/start/config";
 import { CountUp } from "./ui/CountUp";
 import { HoverCard } from "./ui/HoverCard";
 import { RevealGrid } from "./ui/RevealGrid";
@@ -8,7 +8,7 @@ import { Section, SectionTitle } from "./ui/Section";
 export function PricingCtaBlock() {
   return (
     <Section>
-      <SectionTitle>Сколько это стоит?</SectionTitle>
+      <SectionTitle>Условия для старта</SectionTitle>
 
       <RevealGrid
         className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
@@ -31,15 +31,15 @@ export function PricingCtaBlock() {
       >
         <Link
           href={REGISTER_URLS.business}
-          className="inline-flex w-full items-center justify-center rounded-xl bg-[var(--acid)] px-8 py-4 text-lg font-semibold text-black transition-all hover:bg-[var(--acid-hover)] sm:w-auto sm:min-w-[280px]"
+          className="cta-shine inline-flex w-full items-center justify-center rounded-xl bg-[var(--acid)] px-8 py-4 text-lg font-semibold text-black transition-all hover:bg-[var(--acid-hover)] sm:w-auto sm:min-w-[280px]"
         >
-          Запустить за 2500 ₽
+          {CTA.businessRegister}
         </Link>
         <Link
           href={REGISTER_URLS.executor}
-          className="inline-flex w-full items-center justify-center rounded-xl border border-[var(--border-strong)] px-8 py-4 text-lg font-semibold text-white transition-all hover:border-[var(--acid-muted)] sm:w-auto sm:min-w-[280px]"
+          className="cta-outline-shine inline-flex w-full items-center justify-center rounded-xl border border-[var(--border-strong)] px-8 py-4 text-lg font-semibold text-white transition-all hover:border-[var(--acid-muted)] sm:w-auto sm:min-w-[280px]"
         >
-          Начать зарабатывать
+          {CTA.executor}
         </Link>
       </div>
     </Section>

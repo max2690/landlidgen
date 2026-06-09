@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EXECUTOR_BENEFITS, REGISTER_URLS } from "@/lib/start/config";
+import { CTA, EXECUTOR_BENEFITS, REGISTER_URLS } from "@/lib/start/config";
 import { HoverCard } from "./ui/HoverCard";
 import { RevealGrid } from "./ui/RevealGrid";
 import { RevealLead, Section, SectionTitle } from "./ui/Section";
@@ -12,8 +12,8 @@ export function ExecutorEarningsBlock() {
     >
       <SectionTitle>Хотите зарабатывать на рекомендациях?</SectionTitle>
       <RevealLead className="-mt-6 mb-8 text-center text-lg text-[var(--text-muted)]">
-        Берите задания компаний, публикуйте рекомендации и получайте оплату
-        после проверки.
+        Публикуйте рекомендации у себя в Stories и ленте — ваши подписчики и
+        знакомые видят задания, вы получаете оплату после модерации.
       </RevealLead>
 
       <RevealGrid
@@ -34,15 +34,15 @@ export function ExecutorEarningsBlock() {
         data-reveal-delay={200}
         className="mt-6 text-center text-[var(--text-muted)]"
       >
-        С ростом уровня открывается больше заданий и выше оплата.
+        Чем активнее выполняете задания — тем больше открывается возможностей.
       </p>
 
       <div data-reveal="fade-up" data-reveal-delay={280} className="mt-8 text-center">
         <Link
           href={REGISTER_URLS.executor}
-          className="inline-flex w-full items-center justify-center rounded-xl bg-[var(--acid)] px-8 py-4 text-lg font-semibold text-black transition-all hover:bg-[var(--acid-hover)] hover:shadow-[0_0_32px_rgba(191,255,0,0.35)] sm:w-auto sm:min-w-[300px]"
+          className="cta-shine inline-flex w-full items-center justify-center rounded-xl bg-[var(--acid)] px-8 py-4 text-lg font-semibold text-black transition-all hover:bg-[var(--acid-hover)] sm:w-auto sm:min-w-[300px]"
         >
-          Начать зарабатывать
+          {CTA.executor}
         </Link>
       </div>
     </Section>

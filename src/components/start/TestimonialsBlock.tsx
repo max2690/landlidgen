@@ -6,7 +6,7 @@ import { Section, SectionTitle } from "./ui/Section";
 export function TestimonialsBlock() {
   return (
     <Section>
-      <SectionTitle>Типовые сценарии использования</SectionTitle>
+      <SectionTitle>Как это выглядит на практике</SectionTitle>
 
       <RevealGrid className="grid gap-4 md:grid-cols-3" stagger={120}>
         {USE_SCENARIOS.map((item) => (

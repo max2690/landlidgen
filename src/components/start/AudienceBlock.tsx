@@ -6,7 +6,7 @@ import { Section, SectionTitle } from "./ui/Section";
 export function AudienceBlock() {
   return (
     <Section className="border-t border-[var(--border)] bg-[var(--bg-elevated)]">
-      <SectionTitle>Кому подходит LidGen</SectionTitle>
+      <SectionTitle>Кому подходят рекомендации в Stories</SectionTitle>
 
       <RevealGrid
         className="grid grid-cols-2 gap-3 sm:grid-cols-4"

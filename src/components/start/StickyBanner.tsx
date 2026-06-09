@@ -11,7 +11,7 @@ type StickyBannerProps = {
 
 export function StickyBanner({ variant }: StickyBannerProps) {
   return (
-    <div className="sticky top-0 z-50 border-b border-[var(--border)]/80 bg-black/95 backdrop-blur-sm">
+    <div className="sticky top-0 z-50 border-b border-[var(--border)]/80 bg-[var(--background)]/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-1.5 sm:gap-3 sm:px-6 sm:py-2">
         <p className="min-w-0 flex-1 truncate text-[0.7rem] font-medium text-white/90 sm:text-sm">
           {STICKY_BANNERS[variant]}

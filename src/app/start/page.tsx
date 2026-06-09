@@ -1,11 +1,15 @@
-import { StickyBanner } from "@/components/start/StickyBanner";
 import { LogoHeader } from "@/components/start/LogoHeader";
 import { Hero } from "@/components/start/Hero";
 import { StatsBar } from "@/components/start/StatsBar";
 import { PainBlock } from "@/components/start/PainBlock";
+import { TrustTrafficBlock } from "@/components/start/TrustTrafficBlock";
+import { LocalBusinessBlock } from "@/components/start/LocalBusinessBlock";
+import { AcquaintanceCircleBlock } from "@/components/start/AcquaintanceCircleBlock";
 import { SolutionBlock } from "@/components/start/SolutionBlock";
+import { TransparencyTrustBlock } from "@/components/start/TransparencyTrustBlock";
 import { AntifraudBlock } from "@/components/start/AntifraudBlock";
 import { VisualProofBlock } from "@/components/start/VisualProofBlock";
+import { PackageMathBlock } from "@/components/start/PackageMathBlock";
 import { ComparisonBlock } from "@/components/start/ComparisonBlock";
 import { PricingCtaBlock } from "@/components/start/PricingCtaBlock";
 import { ExecutorEarningsBlock } from "@/components/start/ExecutorEarningsBlock";
@@ -17,10 +21,7 @@ import { SiteFooter } from "@/components/start/SiteFooter";
 import { StickyMobileCta } from "@/components/start/StickyMobileCta";
 import { ScrollProgress } from "@/components/start/ui/ScrollProgress";
 import { ScrollReveal } from "@/components/start/ui/ScrollReveal";
-import {
-  resolveHeadlineVariant,
-  resolveStickyVariant,
-} from "@/lib/start/config";
+import { resolveHeadlineVariant } from "@/lib/start/config";
 import { getStartJsonLd, startMetadata } from "@/lib/start/seo";
 
 export const metadata = startMetadata;
@@ -28,7 +29,6 @@ export const metadata = startMetadata;
 type StartPageProps = {
   searchParams: Promise<{
     headline?: string;
-    sticky?: string;
   }>;
 };
 
@@ -38,11 +38,6 @@ export default async function StartPage({ searchParams }: StartPageProps) {
   const headlineVariant = resolveHeadlineVariant(
     params.headline,
     process.env.NEXT_PUBLIC_HERO_VARIANT,
-  );
-
-  const stickyVariant = resolveStickyVariant(
-    params.sticky,
-    process.env.NEXT_PUBLIC_STICKY_VARIANT,
   );
 
   const jsonLd = getStartJsonLd();
@@ -57,16 +52,20 @@ export default async function StartPage({ searchParams }: StartPageProps) {
       <ScrollProgress />
       <ScrollReveal />
 
-      <div className="min-h-screen bg-black pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] text-white md:pb-0">
-        <StickyBanner variant={stickyVariant} />
+      <div className="min-h-screen bg-[var(--background)] pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] text-white md:pb-0">
         <LogoHeader />
         <main>
           <Hero headlineVariant={headlineVariant} />
           <StatsBar />
           <PainBlock />
+          <TrustTrafficBlock />
+          <LocalBusinessBlock />
+          <AcquaintanceCircleBlock />
           <SolutionBlock />
           <AntifraudBlock />
+          <TransparencyTrustBlock />
           <VisualProofBlock />
+          <PackageMathBlock />
           <ComparisonBlock />
           <PricingCtaBlock />
           <ExecutorEarningsBlock />

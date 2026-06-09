@@ -44,7 +44,7 @@ export function PathCard({
       {...props}
       className={`card-hover flex h-full flex-col rounded-2xl border bg-[var(--bg-card)] p-5 sm:p-8 ${
         isBusiness || highlighted
-          ? "border-[var(--acid)]/40 shadow-[0_0_32px_rgba(191,255,0,0.06)] hover:border-[var(--acid)]/60 hover:shadow-[0_0_48px_rgba(191,255,0,0.12)]"
+          ? "border-[var(--acid)]/40 shadow-[0_0_32px_rgba(0,225,180,0.06)] hover:border-[var(--acid)]/60 hover:shadow-[0_0_48px_rgba(0,225,180,0.12)]"
           : "border-[var(--border)] hover:border-[var(--acid-muted)]"
       } ${className}`}
     >
@@ -84,8 +84,8 @@ export function PathCard({
         href={href}
         className={`${footerNote ? "mt-4" : "mt-6"} inline-flex min-h-[48px] w-full items-center justify-center rounded-xl py-3.5 text-base font-semibold transition-all duration-200 active:scale-[0.98] sm:mt-8 sm:py-4 sm:text-lg ${
           isBusiness || highlighted
-            ? "bg-[var(--acid)] text-black hover:bg-[var(--acid-hover)] hover:shadow-[0_0_32px_rgba(191,255,0,0.35)]"
-            : "border border-[var(--border-strong)] bg-[var(--bg-elevated)] text-white hover:border-[var(--acid-muted)] hover:bg-black"
+            ? "cta-shine bg-[var(--acid)] text-black hover:bg-[var(--acid-hover)]"
+            : "cta-outline-shine border border-[var(--border-strong)] bg-[var(--bg-elevated)] text-white hover:border-[var(--acid-muted)] hover:bg-black"
         }`}
       >
         {isBusiness && <span className="mr-2">🟩</span>}

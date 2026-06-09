@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MAIN_SITE_URL, REGISTER_URLS } from "@/lib/start/config";
+import { FOOTER_TAGLINE, MAIN_SITE_URL, REGISTER_URLS } from "@/lib/start/config";
 
 export function SiteFooter() {
   return (
@@ -11,8 +11,7 @@ export function SiteFooter() {
               <span className="text-[var(--acid)]">Lid</span>Gen
             </p>
             <p className="mt-3 text-sm text-[var(--text-muted)] leading-relaxed">
-              Платформа пользовательских рекомендаций. Бизнес получает клиентов,
-              люди — оплату за статусы в соцсетях.
+              {FOOTER_TAGLINE}
             </p>
           </div>
           <div>
